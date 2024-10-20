@@ -10,11 +10,10 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 
-// Database Connection With MongoDB
+
 mongoose.connect("mongodb+srv://yousefsayed0:456789456@app-11.kjdk1.mongodb.net/?retryWrites=true&w=majority&appName=app-11");
 
-// paste your mongoDB Connection string above with password
-// password should not contain '@' special character
+
 
 
 //Image Storage Engine 
@@ -33,11 +32,10 @@ app.post("/upload", upload.single('product'), (req, res) => {
 })
 
 
-// Route for Images folder
 app.use('/images', express.static('upload/images'));
 
 
-// MiddleWare to fetch user from token
+
 const fetchuser = async (req, res, next) => {
   const token = req.header("auth-token");
   if (!token) {
@@ -77,13 +75,13 @@ const Product = mongoose.model("Product", {
 });
 
 
-// ROOT API Route For Testing
+
 app.get("/", (req, res) => {
   res.send("Root");
 });
 
 
-// Create an endpoint at ip/login for login the user and giving auth-token
+
 app.post('/login', async (req, res) => {
   console.log("Login");
   let success = false;
@@ -111,7 +109,7 @@ app.post('/login', async (req, res) => {
 })
 
 
-//Create an endpoint at ip/auth for regestring the user & sending auth-token
+
 app.post('/signup', async (req, res) => {
   console.log("Sign Up");
   let success = false;
